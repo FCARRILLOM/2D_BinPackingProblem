@@ -242,7 +242,7 @@ def Display(df, title, color='r'):
     plt.plot(X, means - deviations, color=color, linestyle='dashed')
     plt.plot(X, means + deviations, color=color, linestyle='dashed')
     plt.xlabel("Generation")
-    plt.ylabel("Num. containers")
+    plt.ylabel("Space wasted")
     plt.title(title)
 
     plt.show()
@@ -263,7 +263,7 @@ toolbox.register("evaluate", Evaluate)
 
 pop = toolbox.population(n=10)
 
-stats = tools.Statistics(key=lambda ind: ind.fitness.values[1])
+stats = tools.Statistics(key=lambda ind: ind.fitness.values[0]) # 0 Space wated - 1 Num. containers
 stats.register("min", np.min)
 stats.register("max", np.max)
 stats.register("mean", np.mean)
@@ -296,7 +296,7 @@ print("NO. OF CONTAINERS: ", numContainers)
 print("SPACE WASTED: ", spaceWasted)
 print("OPTIMAL ORDER: ", currSolution)
 
-Display(df, "Containers")
+Display(df, "Space wasted in containers")
 
 # Check for solution integrity, no objects have been lost/modified
 currSolution = sorted(currSolution, key=lambda x: (x[0], x[1]))
