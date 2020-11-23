@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Fernando Carrillo A01194204
+25/11/20
 2D Bin Packing Problem
 using genetic algorithms
 """
@@ -11,9 +12,7 @@ from deap import algorithms
 import random
 import numpy as np
 import pandas as pd
-#import multiprocessing
 import matplotlib.pyplot as plt
-#import matplotlib.patches as mpatches
 import math
 from PIL import Image, ImageDraw
 
@@ -38,7 +37,7 @@ Fill in containers with objets starting by upper left corner.
 3. If there's no space for a new row, create new container
 Objects are placed as ordered
 in the objects array.
-0 - width, 1 - height
+(width, height)
 """
 def FillContainers(container, objects):
     containersUsed = 1
@@ -92,9 +91,7 @@ def CalcSpaceWasted(width, height, objects):
 
 """
 Evaluation for individual that can calculate the number of containers
-needed to fit all objects or the wasted space of a solution.
-0 - spaceWasted
-1 - containersUsed
+needed to fit all objects and the wasted space of a solution.
 """
 def Evaluate(individual):
     global containerSize
@@ -164,7 +161,7 @@ Creates a 500 x 500 grid with objects organized inside containers.
 Each container is a black square with white outline
 Each object is a white rectangle with red outline
 Max. 25 containers shown
-Image is saved in containers folder with id=id
+Image is saved in /containers folder as container{id}.jpg
 """
 def DrawContainers(containerSize, objects, id):
     # Resize for image visibility
